@@ -26,12 +26,16 @@ public class Article extends Timestamped {
     @Column(nullable = false)
     private String content;
 
-    @OneToMany(mappedBy="article")
+    @OneToMany(mappedBy = "article")
+    private List<HashTag> hashTags;
+
+    @OneToMany(mappedBy = "article")
     private List<Comment> comments;
 
     // 관심 상품 생성 시 이용합니다.
     public Article(ArticleRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+        this.hashTags = requestDto.getHashTags();
     }
 }
